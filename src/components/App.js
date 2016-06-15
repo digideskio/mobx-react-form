@@ -30,8 +30,4 @@ App.childContextTypes = {
     formSet: React.PropTypes.func
 };
 
-App.contextTypes = {
-    store: React.PropTypes.object
-};
-
 export default App;
