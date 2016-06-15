@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 
 import store from './store';
 import App from './components/App';
-import Provider from './Provider';
+import { Provider } from './lib/mobx-connect';
 
 const rootEl = document.getElementById('root');
 
