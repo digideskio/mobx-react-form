@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes, cloneElement } from 'react';
 import { observer } from 'mobx-react';
 
 @observer
@@ -9,16 +9,16 @@ class Provider extends Component {
     }
 
     render() {
-        return React.cloneElement(this.props.children, { store });
+        return cloneElement(this.props.children, { store });
     }
 }
 
 Provider.propTypes = {
-    store: React.PropTypes.object
+    store: PropTypes.object.isRequired
 };
 
 Provider.childContextTypes = {
-    store: React.PropTypes.object
+    store: PropTypes.object
 };
 
 export default Provider;
