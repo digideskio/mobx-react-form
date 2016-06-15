@@ -8,9 +8,9 @@ class Textarea extends Component {
 
         return (
             <div>
-                <label htmlFor={this.id}>{config.label}</label>
+                <label htmlFor={path}>{config.label}</label>
                 <textarea
-                    id={this.id}
+                    id={path}
                     value={formGet(path)}
                     onChange={e => formSet(path, e.target.value)}
                 />
