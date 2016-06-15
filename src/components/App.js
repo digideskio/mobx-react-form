@@ -8,8 +8,8 @@ class App extends Component {
         const { store } = this.props;
 
         return {
-            formGet: path => store.form.get(path),
-            formSet: (path, value) => store.form.set(path, value)
+            formGet: path => store.form.getIn(path),
+            formSet: (path, value) => store.form.setIn(path, value)
         };
     }
 

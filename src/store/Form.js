@@ -3,11 +3,11 @@ import get from 'lodash/get';
 import set from 'lodash/set';
 
 export default class Form {
-    get(path) {
+    getIn(path) {
         return get(this.data, path);
     }
 
-    set(path, value) {
+    setIn(path, value) {
         set(this.data, path, value);
     }
 
