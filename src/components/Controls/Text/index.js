@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
-import uniqueId from 'lodash/uniqueId';
 import { observer } from 'mobx-react';
 
 @observer
 class Text extends Component {
-    id = uniqueId('text_');
-
     render() {
         const { config, path, formGet, formSet } = this.props;
+        console.log(`rendering ${path}`);
 
         return (
             <div>
-                <label htmlFor={this.id}>{config.label}</label>
+                <label htmlFor={path}>{config.label}</label>
                 <input
                     type="text"
-                    id={this.id}
+                    id={path}
                     value={formGet(path)}
                     onChange={e => formSet(path, e.target.value)}
                 />
