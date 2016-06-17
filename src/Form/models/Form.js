@@ -7,8 +7,8 @@ function isValid(data, schema) {
 }
 
 export default class Form {
-    constructor(data, schema) {
-        if (isValid(data, schema)) {
+    constructor(schema, data) {
+        if (!isValid(data, schema)) {
             throw Error('data and schema are not compatible');
         }
 
