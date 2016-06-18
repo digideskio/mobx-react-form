@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import Tabs from './Tabs';
+import Controls from './Controls';
 
 @observer
 class Form extends Component {
@@ -18,7 +18,7 @@ class Form extends Component {
 
         return (
             <div className="form">
-                <Tabs tabs={form.schema} />
+                <Controls controls={form.schema} />
             </div>
         );
     }

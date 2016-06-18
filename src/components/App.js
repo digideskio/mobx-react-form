@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 
-import { FormModel, FormComponent } from '../Form';
+import { GroupedFormModel, GroupedFormComponent } from '../Form';
 
 const schema = {
     tab1: {
@@ -27,7 +27,7 @@ const schema = {
 @observer
 class App extends Component {
     state = {
-        form: new FormModel(schema)
+        form: new GroupedFormModel(schema)
     };
 
     renderData = () => {
@@ -41,7 +41,7 @@ class App extends Component {
             <div>
                 {this.renderData()}
 
-                <FormComponent form={this.state.form} />
+                <GroupedFormComponent form={this.state.form} />
             </div>
         );
     }
