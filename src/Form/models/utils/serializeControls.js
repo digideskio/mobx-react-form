@@ -46,8 +46,8 @@ function groupRepeaterControl(config, groups) {
 
     return groups.map(group => {
         return mapValues(config.schema, (control, cid) => {
-            if (transformers[control.type]) {
-                return transformers[control.type](control, group[cid]);
+            if (this[control.type]) {
+                return this[control.type](control, group[cid]);
             }
 
             return group[cid];
