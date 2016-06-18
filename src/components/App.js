@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 
-import { GroupedFormModel, GroupedFormComponent } from '../Form';
+import {
+    FormModel,
+    GroupedFormModel,
+    FormComponent,
+    GroupedFormComponent
+} from '../Form';
 
 const schema = {
     tab1: {
@@ -24,24 +29,34 @@ const schema = {
     }
 };
 
+function copy(object) {
+    return JSON.parse(JSON.stringify(object));
+}
+
+const Pre = observer(({ data }) => {
+    return <pre>{
+        JSON.stringify(data, null, 2)
+    }</pre>;
+});
+
 @observer
 class App extends Component {
     state = {
-        form: new GroupedFormModel(schema)
-    };
-
-    renderData = () => {
-        return <pre>{
-            JSON.stringify(this.state.form.data, null, 2)
-        }</pre>;
+        groupedForm: new GroupedFormModel(copy(schema)),
+        form: new FormModel(copy(schema.tab1.controls))
     };
 
     render() {
         return (
             <div>
-                {this.renderData()}
+                <Pre data={this.state.groupedForm.data} />
+                <Pre data={this.state.form.data} />
 
-                <GroupedFormComponent form={this.state.form} />
+                <FormComponent form={this.state.form} />
+                <br />
+                <br />
+                <br />
+                <GroupedFormComponent form={this.state.groupedForm} />
             </div>
         );
     }
