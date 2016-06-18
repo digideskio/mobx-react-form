@@ -1,29 +1,22 @@
-import { observable } from 'mobx';
+import { observable, action } from 'mobx';
 import get from 'lodash/get';
 import set from 'lodash/set';
-
-function isValid(data, schema) {
-    return true;
-}
+import serializeTabs from './utils/serializeTabs';
 
 export default class Form {
-    constructor(schema, data) {
-        if (!isValid(data, schema)) {
-            throw Error('data and schema are not compatible');
-        }
-
-        this.data = data;
-        this.schema = schema;
-    }
-
     @observable data = {};
     @observable schema = {};
+
+    constructor(schema, data = {}) {
+        this.schema = schema;
+        this.data = serializeTabs(schema, data);
+    }
 
     getIn(path) {
         return get(this.data, path);
     }
 
-    setIn(path, value) {
+    @action setIn(path, value) {
         set(this.data, path, value);
     }
 }
