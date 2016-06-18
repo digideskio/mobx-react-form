@@ -5,7 +5,6 @@ import { observer } from 'mobx-react';
 class Text extends Component {
     render() {
         const { config, path, formGet, formSet } = this.props;
-        console.log(`rendering ${path}`);
 
         return (
             <div>

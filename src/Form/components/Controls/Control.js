@@ -5,7 +5,6 @@ import providers from './providers';
 
 const Control = observer((props, context) => {
     const { config, path } = props;
-    console.log(`rendering ${path}`);
 
     if (providers[config.type]) {
         const delegate = providers[config.type];
