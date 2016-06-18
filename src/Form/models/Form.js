@@ -1,22 +1,11 @@
-import { observable, action } from 'mobx';
-import get from 'lodash/get';
-import set from 'lodash/set';
-import serializeTabs from './utils/serializeTabs';
+import serializeControls from './utils/serializeControls';
+import FormInterface from './FormInterface';
 
-export default class Form {
-    @observable data = {};
-    @observable schema = {};
-
+export default class Form extends FormInterface {
     constructor(schema, data = {}) {
+        super();
+
         this.schema = schema;
-        this.data = serializeTabs(schema, data);
-    }
-
-    getIn(path) {
-        return get(this.data, path);
-    }
-
-    @action setIn(path, value) {
-        set(this.data, path, value);
+        this.data = serializeControls(schema, data);
     }
 }
