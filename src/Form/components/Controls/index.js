@@ -8,8 +8,9 @@ import Control from './Control';
 class Controls extends Component {
     renderControl = (control, controlId) => {
         const { path } = this.props;
+        const controlPath = path ? `${path}.${controlId}` : controlId;
 
-        return <Control config={control} path={`${path}.${controlId}`} key={controlId} />
+        return <Control config={control} path={controlPath} key={controlId} />
     };
 
     render() {
