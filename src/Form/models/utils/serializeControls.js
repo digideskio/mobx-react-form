@@ -3,16 +3,22 @@ import isArray from 'lodash/isArray';
 import some from 'lodash/some';
 import isString from 'lodash/isString';
 import isObject from 'lodash/isObject';
+import isUndefined from 'lodash/isUndefined';
 
 export default function serializeControls(controls, data = {}) {
     return mapValues(controls, (control, cid) => {
-        return transformers[control.type](control, data[cid]);
+        if (transformers[control.type]) {
+            return transformers[control.type](control, data[cid]);
+        }
+
+        return data[cid];
     });
 }
 
 const transformers = {
     text: stringControls,
     textarea: stringControls,
+    checkbox: booleanControls,
     'group-repeater': groupRepeaterControl
 };
 
@@ -29,6 +35,10 @@ function stringControls(config, value) {
     return isString(value) ? value : config.default;
 }
 
+function booleanControls(config, value) {
+    return isUndefined(value) ? config.default : Boolean(value);
+}
+
 function groupRepeaterControl(config, groups) {
     if (isArrayOfObjects(groups)) {
         return config.default;
@@ -36,7 +46,11 @@ function groupRepeaterControl(config, groups) {
 
     return groups.map(group => {
         return mapValues(config.schema, (control, cid) => {
-            return transformers[control.type](control, group[cid]);
+            if (transformers[control.type]) {
+                return transformers[control.type](control, group[cid]);
+            }
+
+            return group[cid];
         });
     });
 }
